@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="images/doorwindownlogo-removebg-preview.png" alt="Puertas & Ventanas Logo">
+        </a>
+        <!-- Icono hamburguesa -->
+<div class="hamburger-menu" id="hamburger-menu">
+    <i class="bx bx-menu"></i>
+</div>
+        <div class="navbar">
+            <a href="index.html">Inicio</a>
+            <a href="all-products.html">Productos</a>
+            <a href="offers.html">Ofertas</a>
+            <a href="contact.html">Contacto</a>
+        </div>
+        <div class="icons">
+            <a href="#"><i class="bx bx-search"></i></a>
+            <a href="cart.html"><i class="bx bx-cart"></i><span id="cart-count">0</span></a>
+            <a href="account.html"><i class="bx bx-user"></i></a>
+        </div>
+        <div class="mobile-menu">
+            <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+                <i class="bx bx-menu"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Cart Section -->
+    <section class="cart">
+        <h2>Carrito de Compras</h2>
+        
+        <!-- Mensaje si el carrito está vacío -->
+        <div id="empty-cart-message">
+            <p>Tu carrito está vacío. Agrega productos para continuar.</p>
+        </div>
+
+        <!-- Aquí se agregarán los productos -->
+        <div id="cart-items" class="cart-items">
+            <!-- Productos se agregarán dinámicamente aquí -->
+        </div>
+
+        <div id="cart-summary" class="cart-summary" style="display: none;">
+            <p>Total: <span id="cart-total">$0.00</span></p>
+            <a href="checkout.html" class="btn">Proceder al pago</a>
+            <a href="all-products.html" class="btn">Continuar comprando</a>
+            <button class="btn" onclick="clearCart()">Vaciar Carrito</button> <!-- Botón para vaciar el carrito -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-media">
+            <a href="#"><i class="bx bxl-facebook"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-instagram"></i></a>
+        </div>
+        <div class="footer-links">
+            <a href="#">Acerca de Nosotros</a>
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Política de Privacidad</a>
+        </div>
+    </footer>
+
+    <script>
+        // Simulación de productos en el carrito
+        let cartItems = [];
+
+        // Función para agregar un producto al carrito
+        function addToCart(product) {
+            let existingProduct = cartItems.find(item => item.id === product.id);
+            
+            if (existingProduct) {
+                existingProduct.quantity += 1; // Si ya existe, aumentamos la cantidad
+            } else {
+                cartItems.push(product); // Si no existe, lo agregamos al carrito
+            }
+
+            updateCart(); // Actualizamos el carrito
+        }
+
+        // Función para eliminar un producto del carrito
+        function removeFromCart(productId) {
+            cartItems = cartItems.filter(item => item.id !== productId); // Elimina el producto
+            updateCart(); // Actualizamos el carrito después de eliminar el producto
+        }
+
+        // Función para vaciar el carrito completamente
+        function clearCart() {
+            cartItems = []; // Limpiar todos los productos
+            updateCart(); // Actualizamos la vista del carrito
+        }
+
+        // Función para actualizar la vista del carrito
+        function updateCart() {
+            const cartCount = document.getElementById("cart-count");
+            const cartItemsContainer = document.getElementById("cart-items");
+            const cartSummary = document.getElementById("cart-summary");
+            const emptyCartMessage = document.getElementById("empty-cart-message");
+            const cartTotal = document.getElementById("cart-total");
+
+            if (cartItems.length > 0) {
+                emptyCartMessage.style.display = "none"; // Ocultar el mensaje de carrito vacío
+                cartItemsContainer.innerHTML = ""; // Limpiar productos actuales en el carrito
+                let total = 0;
+
+                cartItems.forEach(item => {
+                    const cartItemDiv = document.createElement("div");
+                    cartItemDiv.classList.add("cart-item");
+                    cartItemDiv.innerHTML = `
+                        <img src="${item.imageUrl}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <p>${item.name}</p>
+                            <span>$${item.price}</span>
+                            <div class="quantity">
+                                <label for="quantity">Cantidad:</label>
+                                <input type="number" value="${item.quantity}" min="1" readonly>
+                            </div>
+                            <span class="total">Total: $${(item.price * item.quantity).toFixed(2)}</span>
+                            <button class="remove-btn" onclick="removeFromCart(${item.id})">
+                                <i class="bx bx-trash"></i> Eliminar
+                            </button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemDiv);
+
+                    total += item.price * item.quantity; // Sumar total
+                });
+
+                cartSummary.style.display = "block"; // Mostrar resumen
+                cartTotal.textContent = `$${total.toFixed(2)}`; // Actualizar total
+                cartCount.textContent = cartItems.length; // Actualizar contador en el ícono
+            } else {
+                emptyCartMessage.style.display = "block"; // Mostrar mensaje de carrito vacío
+                cartSummary.style.display = "none"; // Ocultar resumen
+                cartCount.textContent = 0; // Contador a 0
+            }
+        }
+
+        // Simulamos que se agrega un producto al carrito al cargar la página (elimina esta línea si no es necesario)
+        // addToCart(product); 
+    </script>
+
+</body>
+<script>
+    // Selecciona el icono de hamburguesa y el menú
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const navbar = document.querySelector('.navbar');
+
+    // Agregar el evento de clic para mostrar/ocultar el menú
+    hamburgerMenu.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+    });
+</script>
+</html>

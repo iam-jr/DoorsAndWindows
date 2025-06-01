@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puertas & Ventanas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+   <header>
+        <a href="index.html" class="logo">
+            <img src="images/doorwindownlogo-removebg-preview.png" alt="Puertas & Ventanas Logo">
+        </a>
+        <!-- Icono hamburguesa -->
+<div class="hamburger-menu" id="hamburger-menu">
+    <i class="bx bx-menu"></i>
+</div>
+        <div class="navbar">
+            <a href="index.html">Inicio</a> <!-- Enlace a la página de inicio -->
+            <a href="all-products.html">Productos</a> <!-- Enlace a la página de productos -->
+            <a href="offers.html">Ofertas</a> <!-- Enlace a la página de ofertas -->
+            <a href="contact.html">Contacto</a> <!-- Enlace a la página de contacto -->
+        </div>
+
+        <div class="icons">
+            <!-- Search Bar (Dropdown en hover) -->
+            <div class="search-container">
+                <a href="#" class="search-icon"><i class="bx bx-search"></i></a>
+                <form action="search.html" method="get" class="search-form">
+                    <input type="text" name="q" placeholder="Buscar..." class="search-input">
+                    <button type="submit" class="search-btn"><i class="bx bx-search"></i></button>
+                </form>
+            </div>
+
+            <!-- Enlace al carrito (cart.html) -->
+            <a href="cart.html"><i class="bx bx-cart"></i></a>
+
+            <!-- Enlace a la cuenta (account.html) -->
+            <a href="account.html"><i class="bx bx-user"></i></a>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Puertas Y Ventanas A Tu Estilo</h1>
+            <p>Encuentra las mejores puertas y ventanas para su hogar o negocio.</p>
+            <a href="all-products.html" class="btn">Ver productos</a> <!-- Enlace a la página de productos -->
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products" id="productos">
+        <h2>Productos Destacados</h2>
+        <div class="product-list">
+            <div class="product-item">
+                <img src="assets/images/puerta-metalica.jpg" alt="Puerta Metálica">
+                <p>Puerta Metálica</p>
+                <span>$200.00 - $400.00</span>
+                <a href="product-detail.html" class="btn">Ver Detalles</a> <!-- Enlace a la página de detalles del producto -->
+            </div>
+            <div class="product-item">
+                <img src="assets/images/puerta-madera.jpg" alt="Puerta de Madera">
+                <p>Puerta de Madera</p>
+                <span>$36.00 - $55.00</span>
+                <a href="product-detail.html" class="btn">Ver Detalles</a> <!-- Enlace a la página de detalles del producto -->
+            </div>
+            <div class="product-item">
+                <img src="assets/images/ventana-pvc.jpg" alt="Ventana PVC">
+                <p>Ventana PVC</p>
+                <span>$20.00 - $29.00</span>
+                <a href="product-detail.html" class="btn">Ver Detalles</a> <!-- Enlace a la página de detalles del producto -->
+            
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-media">
+            <a href="#"><i class="bx bxl-facebook"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-instagram"></i></a>
+        </div>
+        <div class="footer-links">
+            <a href="#">Acerca de Nosotros</a>
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Política de Privacidad</a>
+        </div>
+    </footer>
+
+</body>
+<script>
+    // Selecciona el icono de hamburguesa y el menú
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const navbar = document.querySelector('.navbar');
+
+    // Agregar el evento de clic para mostrar/ocultar el menú
+    hamburgerMenu.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+    });
+</script>
+
+</html>

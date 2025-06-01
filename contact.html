@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Puertas & Ventanas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="images/doorwindownlogo-removebg-preview.png" alt="Puertas & Ventanas Logo">
+        </a>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <i class="bx bx-menu"></i>
+        </div>
+        
+        <div class="navbar">
+            <a href="index.html">Inicio</a>
+            <a href="all-products.html">Productos</a>
+            <a href="offers.html">Ofertas</a>
+            <a href="contact.html">Contacto</a>
+        </div>
+
+        <div class="icons">
+            <a href="#"><i class="bx bx-search"></i></a>
+            <a href="#"><i class="bx bx-cart"></i></a>
+            <a href="#"><i class="bx bx-user"></i></a>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2>Contáctanos</h2>
+        <div class="contact-info">
+            <div class="info-box">
+                <i class="bx bx-map"></i>
+                <h3>Dirección</h3>
+                <p>Calle Ficticia 123, Ciudad, País</p>
+            </div>
+            <div class="info-box">
+                <i class="bx bx-phone"></i>
+                <h3>Teléfono</h3>
+                <p>+1 234 567 890</p>
+            </div>
+            <div class="info-box">
+                <i class="bx bx-envelope"></i>
+                <h3>Email</h3>
+                <p>contacto@puertasyventanas.com</p>
+            </div>
+        </div>
+        
+        <form action="submit-form.php" method="POST">
+            <table>
+                <tr>
+                    <td><label for="name">Nombre:</label></td>
+                    <td><input type="text" id="name" name="name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Correo Electrónico:</label></td>
+                    <td><input type="email" id="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <td><label for="message">Mensaje:</label></td>
+                    <td><textarea id="message" name="message" required></textarea></td>
+                </tr>
+            </table>
+            
+            <!-- Espacio debajo de la tabla antes del botón -->
+            <div class="button-container">
+                <button type="submit" class="btn">Enviar Mensaje</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-media">
+            <a href="#"><i class="bx bxl-facebook"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-instagram"></i></a>
+        </div>
+        <div class="footer-links">
+            <a href="#">Acerca de Nosotros</a>
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Política de Privacidad</a>
+        </div>
+    </footer>
+
+    <script>
+        // Selecciona el icono de hamburguesa y el menú
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const navbar = document.querySelector('.navbar');
+
+        // Agregar el evento de clic para mostrar/ocultar el menú
+        hamburgerMenu.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

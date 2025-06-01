@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto | Puertas & Ventanas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="images/doorwindownlogo-removebg-preview.png" alt="Puertas & Ventanas Logo">
+        </a>
+        <!-- Icono hamburguesa -->
+        <div class="hamburger-menu" id="hamburger-menu">
+            <i class="bx bx-menu"></i>
+        </div>
+        <div class="navbar">
+            <a href="index.html">Inicio</a>
+            <a href="all-products.html">Productos</a>
+            <a href="#">Ofertas</a>
+            <a href="#">Contacto</a>
+        </div>
+
+        <div class="icons">
+            <a href="#"><i class="bx bx-search"></i></a>
+            <a href="cart.html" id="carrito-icon"><i class="bx bx-cart"></i><span id="carrito-count">0</span></a>
+            <a href="#"><i class="bx bx-user"></i></a>
+        </div>
+    </header>
+
+    <!-- Product Details Section -->
+    <section class="product-details">
+        <h2>Puerta Metálica</h2>
+        <div class="product-container">
+            <div class="product-image">
+                <img src="assets/images/puerta-metalica.jpg" alt="Puerta Metálica">
+            </div>
+            <div class="product-description">
+                <h3>Descripción</h3>
+                <p>Puerta metálica de alta resistencia ideal para seguridad en hogares o negocios.</p>
+                <span class="price">$300.00</span>
+                <button id="agregar-al-carrito" data-id="1" data-nombre="Puerta Metálica" data-precio="300">Agregar al Carrito</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-media">
+            <a href="#"><i class="bx bxl-facebook"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-instagram"></i></a>
+        </div>
+        <div class="footer-links">
+            <a href="#">Acerca de Nosotros</a>
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Política de Privacidad</a>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar carrito de compras
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        // Actualizar el contador de carrito
+        function actualizarCarrito() {
+            // Actualizar el contador de productos en el carrito
+            document.getElementById('carrito-count').textContent = carrito.length;
+            // Actualizar el almacenamiento local
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        }
+
+        // Función para agregar producto al carrito
+        function agregarAlCarrito(id, nombre, precio) {
+            const producto = {
+                id: id,
+                nombre: nombre,
+                precio: parseFloat(precio),
+                cantidad: 1
+            };
+
+            // Verificar si el producto ya está en el carrito
+            const productoExistente = carrito.find(item => item.id === id);
+            if (productoExistente) {
+                // Si ya existe, incrementar la cantidad
+                productoExistente.cantidad += 1;
+            } else {
+                // Si no existe, agregar el producto al carrito
+                carrito.push(producto);
+            }
+
+            // Actualizar el carrito
+            actualizarCarrito();
+        }
+
+        // Agregar evento al botón de "Agregar al carrito"
+        document.getElementById('agregar-al-carrito').addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            const nombre = this.getAttribute('data-nombre');
+            const precio = this.getAttribute('data-precio');
+
+            agregarAlCarrito(id, nombre, precio);
+            alert('Producto agregado al carrito');
+        });
+
+        // Mostrar el número de productos en el carrito al cargar la página
+        actualizarCarrito();
+
+        // Selecciona el icono de hamburguesa y el menú
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const navbar = document.querySelector('.navbar');
+
+        // Agregar el evento de clic para mostrar/ocultar el menú
+        hamburgerMenu.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
